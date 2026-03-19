@@ -1,9 +1,48 @@
 # The Odin Library
 
-A simple library application built with HTML, CSS, and vanilla JavaScript. This project is part of The Odin Project's Full Stack JavaScript curriculum.
+Aplicação de biblioteca desenvolvida com HTML, CSS e JavaScript puro (vanilla JS).
 
-## Description
+## Descrição
 
-This is a single-page application where users can add information about books (title, author, number of pages, and read status) into a personal library. The book data is stored in an array and will be displayed as cards on the main page.
+Este projeto funciona como uma Single Page Application (SPA) simples para cadastro e visualização de livros.
 
-_This is a work in progress._
+O usuário pode:
+
+- abrir um formulário dinâmico na sidebar;
+- cadastrar título, autor, número de páginas e status de leitura;
+- validar campos obrigatórios no envio;
+- visualizar livros em cards gerados via DOM;
+- remover livros individuais da interface e do array em memória.
+
+## Funcionalidades Implementadas
+
+- Formulário criado e inserido dinamicamente com JavaScript.
+- Validação nativa do navegador usando campos obrigatórios (`required`).
+- Criação de objetos `Book` com identificador único (`crypto.randomUUID()`).
+- Armazenamento dos livros em array local durante a sessão.
+- Renderização de cards com botões de ação.
+- Remoção de livro do DOM e do array.
+- Layout responsivo com CSS Grid (estrutura da página e grade de cards).
+- Truncamento de textos longos com reticências para manter consistência visual dos cards.
+
+## Tecnologias e Conceitos Aplicados
+
+- HTML5 semântico (`header`, `aside`, `main`, `footer`).
+- CSS Grid e Flexbox para layout e alinhamento.
+- Abordagem Mobile First com media query para telas maiores.
+- Manipulação intensa do DOM com JavaScript vanilla.
+- Eventos (`click`, `submit`) e controle de comportamento padrão com `preventDefault()`.
+- Criação e manipulação de objetos e arrays (`push`, `findIndex`, `splice`).
+
+## Estrutura do Projeto
+
+- `index.html`: estrutura base da aplicação.
+- `styles.css`: estilos, responsividade e visual dos componentes.
+- `script.js`: lógica de formulário, criação de livros e renderização de cards.
+
+## Como Executar
+
+1. Clone este repositório.
+2. Abra a pasta do projeto.
+3. Execute o arquivo `index.html` no navegador.
+

@@ -119,7 +119,7 @@ function removeFormFromSidebar() {
 
 addNewBookButton.addEventListener('click', addFormToSidebar);
 
-// Construção e manipulação dos objetos Book:
+// Construção, manipulação e display dos objetos Book:
 function Book(title, author, numberOfPages, haveRead) {
     this.Id = crypto.randomUUID();
     this.Title = title;
@@ -136,8 +136,56 @@ let books = [];
 function addBook(bookTitle, bookAuthor, numberOfPages, HaveRead) {
     let book = new Book(bookTitle, bookAuthor, numberOfPages, HaveRead);
     books.push(book);
+
+    document.getElementById('book-title').value = '';
+    document.getElementById('book-author').value = '';
+    document.getElementById('book-number-of-pages').value = '1';
+    document.getElementById('already-read').checked = false;
+    document.getElementById('not-read-yet').checked = false;
+
+    displayBook(book);
 }
 
 function displayBook(book) {
+    const books = document.querySelector('.books');
+    let bookCard = document.createElement('div');
+    bookCard.classList.add('book-card');
+    bookCard.setAttribute('id', book.Id);
 
+    let title = document.createElement('h3');
+    title.textContent = book.Title;
+    let author = document.createElement('h4');
+    author.textContent = book.Author;
+    let numberOfPages = document.createElement('h4');
+    numberOfPages.textContent = `${book.NumberOfPages} pages`;
+    let bookRead = document.createElement('h4');
+    bookRead.textContent = book.HaveRead ? 'Already read' : 'Not read yet';
+
+    let bookCardButtonsDiv = document.createElement('div');
+    bookCardButtonsDiv.classList.add('book-card-buttons-div');
+
+    let removeBookButton = document.createElement('button');
+    removeBookButton.innerText = 'Remove book';
+    removeBookButton.setAttribute('type', 'button');
+
+    // A arrow function embrulha a chamada da função para que não aconteça ao ser passada ao eventListener.
+    removeBookButton.addEventListener('click', () => removeBookAndBookCard(book.Id));
+    
+    bookCardButtonsDiv.append(removeBookButton);
+
+    bookCard.append(title, author, numberOfPages, bookRead, bookCardButtonsDiv);
+
+    books.append(bookCard);
+}
+
+function removeBookAndBookCard(bookId) {
+    let elementToRemove = document.getElementById(bookId);
+    if(elementToRemove) {
+        elementToRemove.remove();
+    }
+    
+    const index = books.findIndex(obj => obj.Id === bookId);
+    if(index !== -1){
+        books.splice(index, 1);
+    }
 }

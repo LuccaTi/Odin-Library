@@ -32,7 +32,7 @@ html {
   fiquem acima do restante do conteúdo.*/
 .header {
   grid-column: 1 / -1;
-  background-color: #1992d4;
+  background-color: #333a45;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,19 +48,19 @@ html {
 }
 
 .content-sidebar-menu {
-  background-color: rebeccapurple;
+  background-color: #474e5d;
   padding: 1em;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0;
 }
 
 button {
   color: white;
-  background-color: #1992d4;
+  background-color: #e4a80d;
   border: none;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
@@ -68,11 +68,11 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: #1787c4;
+  background-color: #ca940c;
 }
 
 button:active {
-  background-color: #1474a8;
+  background-color: #9f750a;
   outline: none;
 }
 
@@ -163,38 +163,63 @@ form input[type="number"] {
 
 .content-main {
   background-color: #f4f4f4;
-  padding: 1em;
   color: #333;
+  padding: 2rem;
   height: 100%;
-}
-
-.content-main {
   text-align: left;
-  margin-bottom: 1em;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .books {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  gap: 2rem;
 }
 
 .book-card {
   font-size: 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: white;
   border-radius: 0.5em;
-  border-left: 0.5em solid orange;
-  padding: 1rem 1rem;
+  border-left: 0.5em solid #e4a80d;
+  padding: 1rem 2rem;
   box-shadow: 0px 3px 2px 0.5px rgb(207, 207, 207);
+  width: 24rem;
+  height: 15rem;
+  gap: 1rem;
+}
+
+.book-card h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0;
+  margin: 0;
+}
+
+.book-card h4 {
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0;
+  margin: 0;
+}
+
+.book-card-buttons-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .footer {
   grid-column: 1 / -1;
-  background-color: #1992d4;
+  background-color: #333a45;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -232,5 +257,9 @@ form input[type="number"] {
   .content-sidebar-menu {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
+  }
+
+  #add-new-book-button {
+    margin-top: 2rem;
   }
 }
