@@ -120,14 +120,17 @@ function removeFormFromSidebar() {
 addNewBookButton.addEventListener('click', addFormToSidebar);
 
 // Construção, manipulação e display dos objetos Book:
-function Book(title, author, numberOfPages, haveRead) {
-    this.Id = crypto.randomUUID();
-    this.Title = title;
-    this.Author = author;
-    this.NumberOfPages = numberOfPages;
-    this.HaveRead = haveRead;
-    this.Info = function () {
-        console.log(`${this.Title} by ${this.Author}, ${this.NumberOfPages} pages, ${this.HaveRead ? 'already read.' : 'not read yet!'}`);
+class Book {
+    constructor(title, author, numberOfPages, haveRead) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.numberOfPages = numberOfPages;
+        this.haveRead = haveRead;
+    }
+
+    showInfo() {
+        console.log(`${this.title} by ${this.author}, ${this.numberOfPages} pages, ${this.haveRead ? 'already read.' : 'not read yet!'}`);
     }
 }
 
@@ -135,6 +138,7 @@ let books = [];
 
 function addBook(bookTitle, bookAuthor, numberOfPages, HaveRead) {
     let book = new Book(bookTitle, bookAuthor, numberOfPages, HaveRead);
+    book.showInfo();
     books.push(book);
 
     document.getElementById('book-title').value = '';
@@ -153,13 +157,13 @@ function displayBook(book) {
     bookCard.setAttribute('id', book.Id);
 
     let title = document.createElement('h3');
-    title.textContent = book.Title;
+    title.textContent = book.title;
     let author = document.createElement('h4');
-    author.textContent = book.Author;
+    author.textContent = book.author;
     let numberOfPages = document.createElement('h4');
-    numberOfPages.textContent = `${book.NumberOfPages} pages`;
+    numberOfPages.textContent = `${book.numberOfPages} pages`;
     let bookRead = document.createElement('h4');
-    bookRead.textContent = book.HaveRead ? 'Already read' : 'Not read yet';
+    bookRead.textContent = book.haveRead ? 'Already read' : 'Not read yet';
 
     let bookCardButtonsDiv = document.createElement('div');
     bookCardButtonsDiv.classList.add('book-card-buttons-div');
@@ -170,7 +174,7 @@ function displayBook(book) {
 
     // A arrow function embrulha a chamada da função para que não aconteça ao ser passada ao eventListener.
     removeBookButton.addEventListener('click', () => removeBookAndBookCard(book.Id));
-    
+
     bookCardButtonsDiv.append(removeBookButton);
 
     bookCard.append(title, author, numberOfPages, bookRead, bookCardButtonsDiv);
@@ -180,12 +184,12 @@ function displayBook(book) {
 
 function removeBookAndBookCard(bookId) {
     let elementToRemove = document.getElementById(bookId);
-    if(elementToRemove) {
+    if (elementToRemove) {
         elementToRemove.remove();
     }
-    
+
     const index = books.findIndex(obj => obj.Id === bookId);
-    if(index !== -1){
+    if (index !== -1) {
         books.splice(index, 1);
     }
 }
